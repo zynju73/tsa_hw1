@@ -107,27 +107,29 @@ class LinearRegressionModel(MLForecastModel):
         self.model=None
 
     def _fit(self, X: np.ndarray) -> None:
-        X=X[0]
-        if len(X.shape) == 1:
-            y = X
-        else:
-            y = X[:, -1]
-
-
-        X_len=X.shape[0]
-        X_fit = np.arange(1, X_len + 1).reshape(-1, 1)
-
-        self.model = LinearRegression()
-        self.model.fit(X_fit, y)
+        pass
+        # X=X[0]
+        # if len(X.shape) == 1:
+        #     y = X
+        # else:
+        #     y = X[:, -1]
+        #
+        #
+        # X_len=X.shape[0]
+        # X_fit = np.arange(1, X_len + 1).reshape(-1, 1)
+        #
+        # self.model = LinearRegression()
+        # self.model.fit(X_fit, y)
 
     def _forecast(self, X: np.ndarray) -> np.ndarray:
-        seq_len=self.seq_len
-        X_pred = np.arange(seq_len + 1, seq_len + 1 + self.pred_len).reshape(-1, 1)
-
-        pred_flat = self.model.predict(X_pred)
-
-        # 返回形状 (pred_len, 1)
-        return pred_flat[:, np.newaxis]
+        pass
+        # seq_len=self.seq_len
+        # X_pred = np.arange(seq_len + 1, seq_len + 1 + self.pred_len).reshape(-1, 1)
+        #
+        # pred_flat = self.model.predict(X_pred)
+        #
+        # # 返回形状 (pred_len, 1)
+        # return pred_flat[:, np.newaxis]
 
 class ExponentialSmoothing(MLForecastModel):
     def __init__(self, args) -> None:
@@ -138,6 +140,8 @@ class ExponentialSmoothing(MLForecastModel):
         self.model = None
 
     def _fit(self, X: np.ndarray) -> None:
+        pass
+        """
         X=X[0]
         if len(X.shape) == 1:
             y = X
@@ -145,11 +149,12 @@ class ExponentialSmoothing(MLForecastModel):
             y = X[:, -1]
 
         self.model = SimpleExpSmoothing(y, initialization_method="estimated").fit()
-
+        """
     def _forecast(self, X: np.ndarray) -> np.ndarray:
+        pass
         """
         使用拟合的模型预测未来 pred_len 步。
-        """
+        
         # len(self.model.data.endog) 是序列的长度 T
         # 预测范围从 T 开始，到 T + pred_len - 1 结束
         end_idx = len(self.model.data.endog) + self.pred_len - 1
@@ -158,7 +163,7 @@ class ExponentialSmoothing(MLForecastModel):
 
         # 结果必须返回 (pred_len, 1) 形状
         return pred_flat[:, np.newaxis]
-
+        """
 
 
 
